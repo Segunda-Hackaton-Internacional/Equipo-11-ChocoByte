@@ -23,5 +23,7 @@ if (process.env.USE_LOCAL_WALLET === 'true') {
   umi.use(keypairIdentity(serverWallet));
 }
 
-await umi.rpc.airdrop(umi.identity.publicKey, sol(1)); // 1 SOL in lamports is 1_000_000_000
-console.log(`Airdropped 1 SOL to ${umi.identity.publicKey.toString()}`);
+if (process.env.DISABLE_BLOCKCHAIN != 'true') {
+  await umi.rpc.airdrop(umi.identity.publicKey, sol(1)); // 1 SOL in lamports is 1_000_000_000
+  console.log(`Airdropped 1 SOL to ${umi.identity.publicKey.toString()}`);
+}
