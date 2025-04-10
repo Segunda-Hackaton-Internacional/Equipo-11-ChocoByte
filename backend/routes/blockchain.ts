@@ -3,6 +3,8 @@ import { uploadMetadata } from "../libs/blockchain/metadata";
 import { umi } from "../libs/blockchain/serverWallet";
 import { create } from "@metaplex-foundation/mpl-core";
 import { generateSigner, type PublicKey, type TransactionSignature } from "@metaplex-foundation/umi";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import { firebaseStorage } from "../libs/storage/firebase";
 
 export const blockchainRouter = Router();
 
@@ -24,6 +26,12 @@ async function createNFT(name: string, attributes: any): Promise<NFT> {
   }).sendAndConfirm(umi);
 
   // 3. Store NFT in database
+  const docRef = await addDoc(collection(firebaseStorage, "nfts"), {
+    signature: tx.signature.toBase64(),
+    publicKey: asset.publicKey.toString(),
+    name,
+    uri: muri,
+  })
 
   return {
     signature: tx.signature,
@@ -52,5 +60,7 @@ blockchainRouter.post('/nft/register', async (req, res) => {
 });
 
 blockchainRouter.get('/nft/list', async (req, res) => {
-
+  res.json(
+    await getDocs(collection(firebaseStorage, "nfts"))
+  );
 });
