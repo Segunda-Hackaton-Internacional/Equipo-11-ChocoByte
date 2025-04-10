@@ -8,8 +8,7 @@ const umi = createUmi('https://api.devnet.solana.com')
   .use(mplCore())
   /* .use(irysUploader({
     address: 'https://api.devnet.irys.xyz',
-  }) */
-);
+})); */
 
 const signer = generateSigner(umi);
 
