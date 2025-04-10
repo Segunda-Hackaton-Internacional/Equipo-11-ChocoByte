@@ -23,6 +23,8 @@ async function createNFT(name: string, attributes: any): Promise<NFT> {
     uri: muri,
   }).sendAndConfirm(umi);
 
+  // 3. Store NFT in database
+
   return {
     signature: tx.signature,
     publicKey: asset.publicKey,
@@ -50,5 +52,5 @@ blockchainRouter.post('/nft/register', async (req, res) => {
 });
 
 blockchainRouter.get('/nft/list', async (req, res) => {
-  
+
 });

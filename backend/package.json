@@ -16,6 +16,7 @@
     "@metaplex-foundation/umi-bundle-defaults": "^1.1.1",
     "@metaplex-foundation/umi-uploader-irys": "^1.1.1",
     "@types/express": "^5.0.1",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "firebase": "^11.6.0"
   }
 }
