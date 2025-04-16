@@ -1,4 +1,3 @@
-// backend/routes/product.ts
 import { Router, Request, Response } from 'express';
 import {
   getAllProducts,

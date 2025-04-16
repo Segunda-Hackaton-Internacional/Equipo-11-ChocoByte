@@ -1,8 +1,7 @@
-// backend/libs/productService.ts
 import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, getDoc } from 'firebase/firestore';
-import { app } from '../firebase';  // Asegúrate de que en firebase.ts exportas la instancia de la app
+import { app } from '../firebase'; 
 
-// Obtén la instancia de Firestore
+// Instancia de Firestore
 const db = getFirestore(app);
 
 // Define la referencia a la colección de productos
@@ -24,7 +23,7 @@ export async function getAllProducts() {
  * Obtiene un producto por su ID.
  */
 export async function getProductById(productId: string) {
-  const productRef = doc(db, 'products', productId);
+  const productRef = doc(db, 'produacts', productId);
   const productSnap = await getDoc(productRef);
   if (!productSnap.exists()) {
     throw new Error('Producto no encontrado');
