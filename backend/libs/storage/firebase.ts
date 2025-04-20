@@ -1,9 +1,9 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, type FirebaseOptions } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database"; // Para Realtime Database
 
 // Configuración de Firebase con variables de entorno (.env)
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.FIRE_APIKEY,
   authDomain: process.env.FIRE_AUTHDOMAIN,
   projectId: process.env.FIRE_PROJECTID,
