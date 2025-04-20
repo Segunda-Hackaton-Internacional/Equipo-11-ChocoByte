@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import express from 'express';
 
 import { blockchainRouter } from './routes/blockchain';
