@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable, switchMap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { NFTRegistry } from '../../../model/nft-registry';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../../model/product';
+import { NFTMetadata } from '../../../model/nft-metadata';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,15 @@ export class BlockchainService {
   getProductNFTMetadata(product: Product): Observable<NFTRegistry> {
     return this.httpClient.get<NFTRegistry>(`/api/blockchain/nft/${product.nftId}`).pipe(
       switchMap((nft: NFTRegistry) => {
-        
+        return this.httpClient.get<NFTMetadata>(nft.uri!!).pipe(
+          map((metadata: NFTMetadata) => {
+            return {
+              ...nft,
+              attributes: metadata
+            } as NFTRegistry;
+          })
+        );
       })
-    )
+    );
   }
 }
