@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .page-header {
@@ -21,6 +21,7 @@
   flex-direction: column;
   align-items: center;
   min-height: 80vh;
+  padding: 40px;
   /* background-color: aqua; */
   gap: 40px;
 }

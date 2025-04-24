@@ -27,12 +27,22 @@ export class BlockchainPageComponent {
 
   ngOnInit() {
     const productId = this.route.snapshot.paramMap.get('id');
-    this.productService.getProductById(Number(productId)).subscribe(product => {
+    /* this.productService.getProductById(Number(productId)).subscribe(product => {
       this.product = product;
 
       this.blockchainService.getProductNFTMetadata(product).subscribe(metadata => {
         this.nft = metadata;
       });
-    });
+    }); */
+
+    this.product = {
+      id: 3,
+      name: 'Super Cacao Coffee Mix',
+      description: 'Super Cacao Coffee Mix is a delicious blend of cacao and coffee, perfect for a quick energy boost. It also contains a variety of vitamins and minerals to support your health. For those who love the taste of cacao and coffee, this mix is a must-try!',
+      imageUrl: 'https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/now/now06672/l/60.jpg',
+      price: 100,
+      category: 'Mix',
+      nftId: '61313351',
+    }
   }
 }
