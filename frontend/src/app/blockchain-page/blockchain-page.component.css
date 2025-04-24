@@ -21,8 +21,16 @@
   flex-direction: column;
   align-items: center;
   min-height: 80vh;
-  background-color: aqua;
+  /* background-color: aqua; */
   gap: 40px;
+}
+
+.product-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .blockchain-card {
