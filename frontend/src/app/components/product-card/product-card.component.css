@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .page-header {
@@ -21,20 +21,11 @@
   flex-direction: column;
   align-items: center;
   min-height: 80vh;
-  padding: 40px;
   /* background-color: aqua; */
   gap: 40px;
 }
 
 .product-card {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.blockchain-card {
   width: 80%;
   background-color: white;
   border-radius: 10px;
@@ -47,25 +38,32 @@
   gap: 20px;
 }
 
-.blockchain-info {
+.product-info {
   display: flex;
   flex-direction: row;
 }
 
-.blockchain-col {
+.product-col {
   /* border: 1px solid red; */
   width: 50%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.blockchain-col > p {
-  overflow: hidden;
-  text-overflow: ellipsis;
+.product-price {
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .footer-container {
   width: 100%;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
 * {

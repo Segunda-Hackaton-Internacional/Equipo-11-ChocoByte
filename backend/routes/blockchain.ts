@@ -3,12 +3,13 @@ import { uploadMetadata } from "../libs/blockchain/metadata";
 import { umi } from "../libs/blockchain/serverWallet";
 import { create } from "@metaplex-foundation/mpl-core";
 import { generateSigner, type PublicKey, type TransactionSignature } from "@metaplex-foundation/umi";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { firebaseStorage } from "../libs/storage/firebase";
 
 export const blockchainRouter = Router();
 
 interface NFT {
+  id: string;
   signature: TransactionSignature;
   publicKey: PublicKey;
 }
@@ -34,10 +35,27 @@ async function createNFT(name: string, attributes: any): Promise<NFT> {
   })
 
   return {
+    id: docRef.id,
     signature: tx.signature,
     publicKey: asset.publicKey,
   }
 }
+
+blockchainRouter.get('/nft/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const docRef = doc(firebaseStorage, "nfts", id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      res.status(200).json(docSnap.data());
+    } else {
+      res.status(404).json({ error: 'NFT not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch NFT' });
+  }
+});
 
 blockchainRouter.post('/nft/register', async (req, res) => {
   const data = req.body;

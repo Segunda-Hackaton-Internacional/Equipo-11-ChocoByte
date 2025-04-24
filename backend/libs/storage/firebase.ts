@@ -1,6 +1,7 @@
 import { initializeApp, type FirebaseOptions } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database"; // Para Realtime Database
+import { getStorage } from "firebase/storage"; // Para Firebase Storage
 
 // Configuración de Firebase con variables de entorno (.env)
 const firebaseConfig: FirebaseOptions = {
@@ -16,3 +17,4 @@ const firebaseConfig: FirebaseOptions = {
 export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseStorage = getFirestore(firebaseApp);
 export const db = getDatabase(firebaseApp);
+export const firebaseFiles = getStorage(firebaseApp);
