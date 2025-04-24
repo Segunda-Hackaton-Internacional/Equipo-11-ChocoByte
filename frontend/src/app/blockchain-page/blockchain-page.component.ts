@@ -22,7 +22,7 @@ export class BlockchainPageComponent {
   private productService = inject(ProductsService);
   private blockchainService = inject(BlockchainService);
 
-  product: Product | undefined;
+  product: Product = {};
   nft: NFTRegistry | undefined;
 
   ngOnInit() {
