@@ -27,4 +27,13 @@ export class BlockchainService {
       })
     );
   }
+
+
+  //para compras
+  mintNFT(nombre: string, attributes: any): Observable<any> {
+    return this.httpClient.post(`/api/blockchain/nft/register`, {
+      name: nombre,
+      attributes: attributes
+    });
+  }
 }
