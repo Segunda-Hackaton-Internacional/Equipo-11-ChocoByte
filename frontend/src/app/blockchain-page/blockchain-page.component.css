@@ -55,6 +55,13 @@
 .blockchain-col {
   /* border: 1px solid red; */
   width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blockchain-col > p {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .footer-container {

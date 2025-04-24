@@ -44,5 +44,22 @@ export class BlockchainPageComponent {
       category: 'Mix',
       nftId: '61313351',
     }
+
+    this.nft = {
+      id: '61313351',
+      publicKey: 'CLCoTADvV64PSrnR6QXty6Fwrt9Xc6EdxSJE4wLRePjq',
+      signature: '5CuDA1Y9SBWBJMqFfAXexjiZwS2FQFP8q6B7NPMnDMshvqucWf1jU7TW1FsbovPT96mLWEBTWRE2F3VjMnNxcvwQ',
+      uri: 'https://ipfs.io/ipfs/QmQ6v1x2z5Z3g7k4f8F9J5Y5v5Y5v5Y5v5Y5v5Y5v5Y5v5',
+      attributes: {
+        name: 'Super Cacao Coffee Mix',
+        description: 'Super Cacao Coffee Mix is a delicious blend of cacao and coffee, perfect for a quick energy boost. It also contains a variety of vitamins and minerals to support your health. For those who love the taste of cacao and coffee, this mix is a must-try!',
+        batch_number: '12',
+        country: 'Colombia',
+        date: '2023-10-01',
+        produced_at: 'Cll. 25 #4-50 Valparaíso',
+        produced_by: 'Alpina Coffee S.A.',
+        region: 'Antioquia',
+      }
+    }
   }
 }
