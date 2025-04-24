@@ -19,17 +19,21 @@
             <strong>
               Public Key:
             </strong>
-            {{nft?.publicKey}}
+            <a href="https://explorer.solana.com/address/{{nft?.publicKey}}" target="_blank">
+              {{nft?.publicKey}}
+            </a>
           </p>
           <p>
             <strong>Digital Signature:</strong>
-            {{nft?.signature}}
+            <a href="https://explorer.solana.com/tx/{{nft?.signature}}" target="_blank">
+              {{nft?.signature}}
+            </a>
           </p>
           <p>
             <strong>
               Token Metadata:
             </strong>
-            <a href={{nft?.uri}}>
+            <a href={{nft?.uri}} target="_blank">
               {{nft?.uri}}
             </a>
           </p>
