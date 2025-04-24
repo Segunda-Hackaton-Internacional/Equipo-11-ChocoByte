@@ -1,1 +1,16 @@
-<p>blockchain-page works!</p>
+<div class="page-container">
+  <app-navbar />
+
+  <div class="page-header">
+    <h1>Blockchain Page</h1>
+    <p>Product ID: {{product?.id}}</p>
+  </div>
+
+  <div class="page-content">
+    <app-product-card [product]="product"></app-product-card>
+  </div>
+  
+  <div class="page-footer">
+    <app-footer />
+  </div>
+</div>

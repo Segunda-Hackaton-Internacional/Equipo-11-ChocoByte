@@ -7,6 +7,10 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 
 export const routes: Routes = [
   {
+    path: '',
+    component: LandingPageComponent,
+  },
+  {
     path: 'products',
     component: ProductsPageComponent,
   },
@@ -18,8 +22,4 @@ export const routes: Routes = [
     path: 'blockchain-info/:id',
     component: BlockchainPageComponent,
   },
-  {
-    path: '',
-    component: LandingPageComponent,
-  }
 ];
