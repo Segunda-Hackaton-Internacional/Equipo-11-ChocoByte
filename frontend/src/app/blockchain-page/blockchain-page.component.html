@@ -1,0 +1,72 @@
+<div class="page-container">
+  <app-navbar />
+
+  <div class="page-header">
+    <h1>Información del Producto</h1>
+    <p>ID: {{product.id}}</p>
+  </div>
+
+  <div class="page-content">
+    <app-product-card [product]="product" class="product-card"></app-product-card>
+    <div class="blockchain-card">
+      <h2>
+        Información del Registro NFT
+      </h2>
+      <div class="blockchain-info">
+        <div class="blockchain-col">
+        
+          <p>
+            <strong>
+              Public Key:
+            </strong>
+            <a href="https://explorer.solana.com/address/{{nft?.publicKey}}" target="_blank">
+              {{nft?.publicKey}}
+            </a>
+          </p>
+          <p>
+            <strong>Digital Signature:</strong>
+            <a href="https://explorer.solana.com/tx/{{nft?.signature}}" target="_blank">
+              {{nft?.signature}}
+            </a>
+          </p>
+          <p>
+            <strong>
+              Token Metadata:
+            </strong>
+            <a href={{nft?.uri}} target="_blank">
+              {{nft?.uri}}
+            </a>
+          </p>
+        </div>
+        <div class="blockchain-col">
+          <p>
+            <strong>Nombre Registrado:</strong>
+            {{nft?.attributes?.name}}
+          </p>
+          <p>
+            <strong>Descripción Registrada: </strong>
+            {{nft?.attributes?.description}}
+          </p>
+          <p>
+            <strong>Fecha y Hora Registrados:</strong>
+            {{nft?.attributes?.date}}
+          </p>
+          <p>
+            <strong>Producido en:</strong>
+            {{nft?.attributes?.region}} - {{nft?.attributes?.country}} - {{nft?.attributes?.produced_at}}
+          </p>
+          <p>
+            <strong>Empresa:</strong>
+            {{nft?.attributes?.produced_by}}
+          </p>
+          <p>
+            <strong>Número de Lote:</strong>
+            {{nft?.attributes?.batch_number}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <app-footer class="footer-container" />
+</div>

@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-.env.secret
-=======
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
@@ -43,4 +40,5 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
->>>>>>> 4629910e2edf1070e64655c240fe90314c7d4328
+
+.env.secret

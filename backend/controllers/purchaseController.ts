@@ -5,14 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 
 export const makePurchase = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { productId, quantity, paymentMethod, shippingAddress, buyerId } = req.body;
+    const { productId, quantity, paymentMethod, shippingAddress, userId } = req.body;
 
-    if (!buyerId) {
+    if (!userId) {
       res.status(400).json({ message: "Falta el ID del comprador (buyerId)" });
       return;
     }
 
-    const productRef = doc(firebaseStorage, "productos", productId);
+    const productRef = doc(firebaseStorage, "products", productId);
     const productSnap = await getDoc(productRef);
 
     if (!productSnap.exists()) {
@@ -34,7 +34,7 @@ export const makePurchase = async (req: Request, res: Response): Promise<void> =
     const traceId = uuidv4();
 
     const newOrder = {
-      buyerId,
+      userId,
       productId,
       quantity,
       paymentMethod,

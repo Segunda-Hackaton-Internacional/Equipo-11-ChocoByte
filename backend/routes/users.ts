@@ -1,14 +1,9 @@
-<<<<<<< HEAD
-import { Router } from "express";
-
-export const usersRouter = Router();
-=======
 import express from 'express';
 import { findUserByEmail } from '../libs/storage/userService';
 
-const router = express.Router();
+export const usersRouter = express.Router();
 
-router.post('/login', async (req: any, res: any) => {
+usersRouter.post('/login', async (req: any, res: any) => {
   try {
     console.log(' POST /login');
     const { email, password } = req.body;
@@ -36,6 +31,3 @@ router.post('/login', async (req: any, res: any) => {
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 });
-
-export { router };
->>>>>>> 4629910e2edf1070e64655c240fe90314c7d4328

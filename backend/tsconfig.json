@@ -18,11 +18,8 @@
     "strict": true,
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
-<<<<<<< HEAD
 
-=======
     
->>>>>>> 4629910e2edf1070e64655c240fe90314c7d4328
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,

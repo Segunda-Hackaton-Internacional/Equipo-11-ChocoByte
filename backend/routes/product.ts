@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Router, Request, Response } from 'express';
-=======
 import { Router, type Request, type Response } from 'express';
->>>>>>> 4629910e2edf1070e64655c240fe90314c7d4328
 import {
   getAllProducts,
   getProductById,
