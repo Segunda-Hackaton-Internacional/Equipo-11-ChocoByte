@@ -1,9 +1,16 @@
 import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, getDoc } from 'firebase/firestore';
+<<<<<<< HEAD
+import { app } from '../firebase'; 
+
+// Instancia de Firestore
+const db = getFirestore(app);
+=======
 import { firebaseApp } from './storage/firebase';
 
 
 // Instancia de Firestore
 const db = getFirestore(firebaseApp);
+>>>>>>> 4629910e2edf1070e64655c240fe90314c7d4328
 
 // Define la referencia a la colección de productos
 const productsCollection = collection(db, 'products');
@@ -24,7 +31,11 @@ export async function getAllProducts() {
  * Obtiene un producto por su ID.
  */
 export async function getProductById(productId: string) {
+<<<<<<< HEAD
+  const productRef = doc(db, 'produacts', productId);
+=======
   const productRef = doc(db, 'products', productId); 
+>>>>>>> 4629910e2edf1070e64655c240fe90314c7d4328
   const productSnap = await getDoc(productRef);
   if (!productSnap.exists()) {
     throw new Error('Producto no encontrado');

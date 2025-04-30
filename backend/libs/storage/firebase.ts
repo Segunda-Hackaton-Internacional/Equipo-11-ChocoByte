@@ -1,3 +1,4 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp, type FirebaseOptions } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database"; // Para Realtime Database
@@ -11,9 +12,10 @@ const firebaseConfig: FirebaseOptions = {
   storageBucket: process.env.FIRE_STORAGEBUCKET,
   messagingSenderId: process.env.FIRE_MESSAGINGSENDERID,
   appId: process.env.FIRE_APPID,
-  databaseURL: process.env.FIRE_DATABASE_URL
+  databaseURL: process.env.FIRE_DATABASE_URL,
 };
 
+// Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseStorage = getFirestore(firebaseApp);
 export const db = getDatabase(firebaseApp);

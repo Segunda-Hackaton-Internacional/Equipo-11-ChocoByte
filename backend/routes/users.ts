@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+import { Router } from "express";
+
+export const usersRouter = Router();
+=======
 import express from 'express';
 import { findUserByEmail } from '../libs/storage/userService';
 
@@ -33,3 +38,4 @@ router.post('/login', async (req: any, res: any) => {
 });
 
 export { router };
+>>>>>>> 4629910e2edf1070e64655c240fe90314c7d4328
