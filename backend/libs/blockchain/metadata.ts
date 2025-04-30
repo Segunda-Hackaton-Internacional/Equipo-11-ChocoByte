@@ -1,7 +1,19 @@
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { firebaseFiles } from "../storage/firebase";
+
 export async function uploadMetadata(attributes:any): Promise<string> {
-  // 1. Upload default image
+  // Upload metadata
+  const fileRef = ref(firebaseFiles, `metadata/${attributes.name}`);
 
-  // 2. Upload metadata
-
-  return '';
+  try {
+    const result = await uploadString(fileRef, JSON.stringify(attributes), 'raw', {
+      contentType: 'application/json',
+      cacheControl: 'no-cache',
+    });
+    console.log("Metadata uploaded successfully:", result);
+    return await getDownloadURL(fileRef)
+  } catch (error) {
+    console.error("Error uploading metadata:", error);
+    throw new Error("Failed to upload metadata");
+  }
 }

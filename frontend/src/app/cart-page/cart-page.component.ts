@@ -1,0 +1,77 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; //
+import { ShoppingService } from '../services/shopping/shopping.service';
+import { BlockchainService } from '../services/blockchain/blockchain.service';
+import { Order } from '../../model/order';
+
+@Component({
+  selector: 'app-cart-page',
+  standalone: true,
+  imports: [CommonModule], //
+  styleUrls: ['./cart-page.component.css'], //
+  templateUrl: './cart-page.component.html'
+})
+export class CartPageComponent {
+  carrito = [
+    {
+      productId: 'producto123',
+      nombre: 'Café Orgánico Tolima',
+      cantidad: 2,
+      precio: 15000
+    }
+  ];
+
+  userId = 'cliente001';
+  shippingAddress = 'Calle 123, Bogotá';
+  paymentMethod = 'stripe';
+  resultado = '';
+
+  constructor(
+    private shoppingService: ShoppingService,
+    private blockchainService: BlockchainService
+  ) {}
+
+  get total() {
+    return this.carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+  }
+
+  confirmarCompra() {
+    const item = this.carrito[0];
+
+    const order: Order = {
+      userId: this.userId,
+      productId: item.productId,
+      quantity: item.cantidad,
+      paymentMethod: this.paymentMethod,
+      shippingAddress: this.shippingAddress
+    };
+
+    this.shoppingService.comprarProducto(order).subscribe({
+      next: (res) => {
+        const traceId = res.orden.traceId;
+
+        // Lógica para el mint del NFT
+        const metadata = {
+          nombre: item.nombre,
+          productor: this.userId,
+          origen: 'Tolima, Colombia',
+          fechaProduccion: new Date().toISOString(),
+          certificaciones: ['Fair Trade', 'Orgánico'],
+          traceId: traceId
+        };
+
+        this.blockchainService.mintNFT(item.nombre, metadata).subscribe({
+          next: (nftRes) => {
+            this.resultado = `✅ Compra exitosa. NFT creado: ${nftRes.nft.publicKey}`;
+          },
+          error: (err) => {
+            this.resultado = '⚠️ Compra realizada, pero fallo en NFT: ' + err.message;
+          }
+        });
+      },
+      error: (err) => {
+        this.resultado = '❌ Error al realizar la compra: ' + err.message;
+      }
+    });
+  }
+}
