@@ -2,7 +2,7 @@
   <app-navbar />
 
   <div class="page-header">
-    <h1>Product Information</h1>
+    <h1>Información del Producto</h1>
     <p>ID: {{product.id}}</p>
   </div>
 
@@ -10,7 +10,7 @@
     <app-product-card [product]="product" class="product-card"></app-product-card>
     <div class="blockchain-card">
       <h2>
-        NFT Registry Information
+        Información del Registro NFT
       </h2>
       <div class="blockchain-info">
         <div class="blockchain-col">
@@ -40,27 +40,27 @@
         </div>
         <div class="blockchain-col">
           <p>
-            <strong>Registry Name:</strong>
+            <strong>Nombre Registrado:</strong>
             {{nft?.attributes?.name}}
           </p>
           <p>
-            <strong>Registry Description: </strong>
+            <strong>Descripción Registrada: </strong>
             {{nft?.attributes?.description}}
           </p>
           <p>
-            <strong>Registry Time and Date:</strong>
+            <strong>Fecha y Hora Registrados:</strong>
             {{nft?.attributes?.date}}
           </p>
           <p>
-            <strong>Produced at:</strong>
+            <strong>Producido en:</strong>
             {{nft?.attributes?.region}} - {{nft?.attributes?.country}} - {{nft?.attributes?.produced_at}}
           </p>
           <p>
-            <strong>Company:</strong>
+            <strong>Empresa:</strong>
             {{nft?.attributes?.produced_by}}
           </p>
           <p>
-            <strong>Batch Number:</strong>
+            <strong>Número de Lote:</strong>
             {{nft?.attributes?.batch_number}}
           </p>
         </div>
