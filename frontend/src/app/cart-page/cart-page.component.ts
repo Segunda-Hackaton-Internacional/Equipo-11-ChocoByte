@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common'; //
 import { ShoppingService } from '../services/shopping/shopping.service';
 import { BlockchainService } from '../services/blockchain/blockchain.service';
 import { Order } from '../../model/order';
+import { NavbarComponent } from "../components/navbar/navbar.component";
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CommonModule], //
+  imports: [CommonModule, NavbarComponent], //
   styleUrls: ['./cart-page.component.css'], //
   templateUrl: './cart-page.component.html'
 })
