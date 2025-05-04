@@ -4,11 +4,12 @@ import { ShoppingService } from '../services/shopping/shopping.service';
 import { BlockchainService } from '../services/blockchain/blockchain.service';
 import { Order } from '../../model/order';
 import { NavbarComponent } from "../components/navbar/navbar.component";
+import { FooterComponent } from "../components/footer/footer.component";
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CommonModule, NavbarComponent], //
+  imports: [CommonModule, NavbarComponent, FooterComponent], //
   styleUrls: ['./cart-page.component.css'], //
   templateUrl: './cart-page.component.html'
 })
