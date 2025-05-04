@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common'; //
 import { ShoppingService } from '../services/shopping/shopping.service';
 import { BlockchainService } from '../services/blockchain/blockchain.service';
 import { Order } from '../../model/order';
+import { NavbarComponent } from "../components/navbar/navbar.component";
+import { FooterComponent } from "../components/footer/footer.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CommonModule], //
+  imports: [CommonModule, NavbarComponent, FooterComponent], //
   styleUrls: ['./cart-page.component.css'], //
   templateUrl: './cart-page.component.html'
 })
@@ -28,8 +31,14 @@ export class CartPageComponent {
 
   constructor(
     private shoppingService: ShoppingService,
-    private blockchainService: BlockchainService
-  ) {}
+    private blockchainService: BlockchainService,
+    private router: Router
+  ) {
+    const state = this.router.getCurrentNavigation()?.extras.state as { productos: any[] };
+    if (state?.productos?.length) {
+      this.carrito = state.productos;
+    }
+  }  
 
   get total() {
     return this.carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
