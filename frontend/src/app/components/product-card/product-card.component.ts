@@ -11,4 +11,9 @@ import { Product } from '../../../model/product';
 export class ProductCardComponent {
   @Input()
   product: Product = {};
+
+  agregarAlCarrito() {
+    console.log('Producto agregado al carrito:', this.product);
+    // Aquí puedes agregar la lógica para agregar el producto al carrito
+  }
 }
