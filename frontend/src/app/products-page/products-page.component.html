@@ -1,6 +1,100 @@
-<a href="/cart">
-  Carrito de Compras
-</a>
-<a href="/blockchain-info/12">
-  Detalles del Lote
-</a>
+<div class="products-page">
+  <app-navbar></app-navbar>
+
+  <div class="toggle-container">
+    <button (click)="toggleAddForm()" class="toggle-button">Agregar Producto</button>
+    <button (click)="toggleDeleteForm()" class="toggle-button red">Eliminar Producto</button>
+  </div>
+
+  <div class="container">
+    <h1>Lista de Productos Disponibles</h1>
+
+    <!-- FORMULARIO DE AGREGAR -->
+    <form *ngIf="showAddForm" [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+      <h2>Crear Producto</h2>
+
+      <label for="name">Nombre del Producto</label>
+      <input id="name" formControlName="name" type="text" />
+
+      <label for="price">Precio</label>
+      <input id="price" formControlName="price" type="number" />
+
+      <label for="description">Descripción</label>
+      <textarea id="description" formControlName="description"></textarea>
+
+      <label for="imageUrl">Imagen (URL)</label>
+      <input id="imageUrl" formControlName="imageUrl" type="text" />
+
+      <label for="type">Tipo</label>
+      <select id="type" formControlName="type">
+        <option value="Cacao">Cacao</option>
+        <option value="Café">Café</option>
+      </select>
+
+      <label for="presentation">Presentación</label>
+      <select id="presentation" formControlName="presentation">
+        <option value="Grano">Grano</option>
+        <option value="Molido">Molido</option>
+      </select>
+
+      <label for="weight">Peso (gramos)</label>
+      <input id="weight" formControlName="weight" type="number" />
+
+      <button type="submit">Agregar</button>
+    </form>
+
+    <!-- FORMULARIO DE ELIMINAR -->
+    <div *ngIf="showDeleteForm" class="product-form">
+      <h2>Seleccionar Producto a Eliminar</h2>
+      <select [(ngModel)]="selectedProductId" name="productToDelete">
+        <option [ngValue]="null" disabled>Selecciona un producto</option>
+        <option *ngFor="let product of products" [ngValue]="product.id">
+          {{ product.name }} - ${{ product.price }}
+        </option>
+      </select>
+      <button (click)="confirmDelete()" [disabled]="!selectedProductId">Eliminar</button>
+    </div>    
+
+          <!-- FILTROS SEPARADOS Y ARRIBA -->
+      <div class="filters-container">
+        <div class="filters">
+          <input [(ngModel)]="searchTerm" type="text" placeholder="Buscar por nombre" />
+          <select [(ngModel)]="selectedType">
+            <option value="">Todos</option>
+            <option value="Cacao">Cacao</option>
+            <option value="Café">Café</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- LISTA DE PRODUCTOS -->
+      <div class="product-list">
+        <div *ngFor="let product of filteredProducts()" class="product-item">
+
+        <div class="product-image">
+          <img [src]="product.imageUrl" alt="Imagen de {{ product.name }}" />
+        </div>
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <p><strong>Precio:</strong> ${{ product.price }}</p>
+          <p><strong>Tipo:</strong> {{ product.type }}</p>
+          <p><strong>Presentación:</strong> {{ product.presentation }}</p>
+          <p><strong>Peso:</strong> {{ product.weight }}g</p>
+
+          <div class="quantity-selector">
+            <button (click)="decreaseQuantity(product)">−</button>
+            <span>{{ product.quantity }}</span>
+            <button (click)="increaseQuantity(product)">+</button>
+          </div>
+
+          <div class="product-buttons">
+            <button (click)="addToCart(product)">Añadir al Carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
