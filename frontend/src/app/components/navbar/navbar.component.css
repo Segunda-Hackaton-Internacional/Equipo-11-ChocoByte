@@ -26,6 +26,16 @@ header {
   height: 50px;
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 10px;
+  color: white;
+}
+
 nav ul {
   list-style: none;
   display: flex;
