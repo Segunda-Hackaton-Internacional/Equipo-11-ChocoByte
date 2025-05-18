@@ -13,6 +13,7 @@
         [placeholder]="placeholder"
         [required]="required"
         (input)="onInput($event)"
+        (blur)="onTouched()"
       />
     </label>
   } @else {

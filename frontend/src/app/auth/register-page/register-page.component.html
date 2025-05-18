@@ -9,7 +9,6 @@
     </div>
     <hr />
     <form class="register-form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
-      <p>Form Status: {{ registerForm.status }}</p>
       <app-smart-input
         id="firstName"
         type="text"
@@ -52,6 +51,9 @@
         >
         Confirmar contraseña
       </app-smart-input>
+      <p *ngIf="registerForm.errors?.['fieldsMismatch'] && registerForm.touched" style="color: red;">
+        Las contraseñas no coinciden.
+      </p>
       <app-smart-input
         id="register-btn"
         type="submit"
