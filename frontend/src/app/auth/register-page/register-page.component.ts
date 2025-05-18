@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { FooterComponent } from "../../components/footer/footer.component";
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SmartInputComponent } from "../../components/smart-input/smart-input.component";
 
 @Component({
@@ -12,15 +12,17 @@ import { SmartInputComponent } from "../../components/smart-input/smart-input.co
   styleUrl: './register-page.component.css'
 })
 export class RegisterPageComponent {
-  public registerForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
+  private formBuilder = inject(FormBuilder);
+
+  public registerForm = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    confirmPassword: ['', [Validators.required]],
+    firstName: ['', [Validators.required]],
+    lastName: [''],
   });
 
   public onSubmit() {
-    
+
   }
 }

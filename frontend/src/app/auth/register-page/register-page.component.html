@@ -9,6 +9,7 @@
     </div>
     <hr />
     <form class="register-form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+      <p>Form Status: {{ registerForm.status }}</p>
       <app-smart-input
         id="firstName"
         type="text"

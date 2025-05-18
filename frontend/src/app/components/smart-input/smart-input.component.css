@@ -24,6 +24,15 @@
   cursor: pointer;
 }
 
+.is-btn:hover {
+  background-color: #5d4037;
+}
+
+.is-btn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
 .smart-label {
   display: flex;
   flex-direction: column;
