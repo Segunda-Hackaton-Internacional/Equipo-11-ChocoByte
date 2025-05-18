@@ -6,6 +6,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CartPageComponent } from '../cart-page/cart-page.component';
 import { Router, RouterModule } from '@angular/router';
+import { AppState } from '../../model/appState';
 
 
 interface Product {
@@ -47,6 +48,10 @@ export class ProductsPageComponent implements OnInit {
   selectedType = '';
 
   constructor(private fb: FormBuilder, private router: Router) {
+    if (!localStorage.getItem('state')) {
+      localStorage.setItem('state', JSON.stringify({ productos: [] }));
+    }
+
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
@@ -235,10 +240,20 @@ export class ProductsPageComponent implements OnInit {
     };
   
     this.carritoProductos.push(productoParaCarrito);
-    console.log('Producto enviado al componente carrito:', productoParaCarrito);
-  
-    this.router.navigate(['/cart'], {
-      state: { productos: this.carritoProductos }
-    });
+    const state = JSON.parse(localStorage.getItem('state') as string) as AppState;
+    let agregado = false;
+    for (let i = 0; i < state.productos.length; i++) {
+      const p = state.productos[i];
+      
+      if (p.productId === productoParaCarrito.productId) {
+        p.cantidad += productoParaCarrito.cantidad;
+        agregado = true;
+        break;
+      }
+    }
+    if (!agregado) {
+      state.productos.push(productoParaCarrito);
+    }
+    localStorage.setItem('state', JSON.stringify(state));
   }    
 }
