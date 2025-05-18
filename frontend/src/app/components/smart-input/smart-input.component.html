@@ -1,0 +1,19 @@
+<div class="smart-container">
+  @if (type != "submit") {
+    <label [for]="id">
+      <strong>
+        <ng-content></ng-content>
+      </strong>
+    </label>
+  }
+  <input 
+    [type]="type" 
+    [name]="id" 
+    [id]="id" 
+    class="smart-input" 
+    [value]="value" 
+    [ngClass]="{
+      'is-btn': isBtn,
+    }"
+  />
+</div>

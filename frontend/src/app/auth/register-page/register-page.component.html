@@ -1,1 +1,51 @@
-<p>register-page works!</p>
+<app-navbar />
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Registro</h2>
+      <p>
+        Ingresa todos los campos que se muestran a continuación para crear una cuenta.
+      </p>
+    </div>
+    <hr />
+    <form class="register-form" (ngSubmit)="onSubmit()">
+      <app-smart-input
+        id="firstName"
+        type="text"
+        >
+        Nombres
+      </app-smart-input>
+      <app-smart-input
+        id="lastName"
+        type="text"
+        >
+        Apellidos
+      </app-smart-input>
+      <app-smart-input
+        id="email"
+        type="email"
+        >
+        Correo electrónico
+      </app-smart-input>
+      <app-smart-input
+        id="password"
+        type="password"
+        >
+        Contraseña
+      </app-smart-input>
+      <app-smart-input
+        id="confirmPassword"
+        type="password"
+        >
+        Confirmar contraseña
+      </app-smart-input>
+      <app-smart-input
+        id="register-btn"
+        type="submit"
+        >
+        Registrarse
+      </app-smart-input>
+    </form>
+  </div>
+</div>
+<app-footer />
