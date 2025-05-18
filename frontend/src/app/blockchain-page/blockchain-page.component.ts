@@ -14,7 +14,7 @@ import { FooterComponent } from '../components/footer/footer.component';
   standalone: true,
   imports: [NavbarComponent, ProductCardComponent, FooterComponent],
   templateUrl: './blockchain-page.component.html',
-  styleUrl: './blockchain-page.component.css',
+   styleUrls: ['./blockchain-page.component.css'],
   providers: [ProductsService, BlockchainService]
 })
 export class BlockchainPageComponent {

@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { RegisterPageComponent } from './auth/register-page/register-page.component';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+
 
 export const routes: Routes = [
   {
@@ -23,6 +25,9 @@ export const routes: Routes = [
   {
     path: 'blockchain-info/:id',
     component: BlockchainPageComponent,
+  },
+  { 
+    path: 'products/:id', component: ProductCardComponent 
   },
   {
     path: 'register',

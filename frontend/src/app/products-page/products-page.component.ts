@@ -5,7 +5,8 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CartPageComponent } from '../cart-page/cart-page.component';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+
 
 interface Product {
   id: number;
@@ -28,7 +29,8 @@ interface Product {
     ReactiveFormsModule,
     NavbarComponent,
     FooterComponent,
-    CartPageComponent
+    CartPageComponent,
+    RouterModule,
   ],
   templateUrl: './products-page.component.html',
   styleUrls: ['./products-page.component.css'],
