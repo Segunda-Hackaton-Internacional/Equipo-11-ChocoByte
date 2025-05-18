@@ -12,30 +12,37 @@
       <app-smart-input
         id="firstName"
         type="text"
+        placeholder="John"
+        [required]="true"
         >
         Nombres
       </app-smart-input>
       <app-smart-input
         id="lastName"
         type="text"
+        placeholder="Doe"
         >
         Apellidos
       </app-smart-input>
       <app-smart-input
         id="email"
         type="email"
+        placeholder="johndoe@example.com"
+        [required]="true"
         >
         Correo electrónico
       </app-smart-input>
       <app-smart-input
         id="password"
         type="password"
+        [required]="true"
         >
         Contraseña
       </app-smart-input>
       <app-smart-input
         id="confirmPassword"
         type="password"
+        [required]="true"
         >
         Confirmar contraseña
       </app-smart-input>

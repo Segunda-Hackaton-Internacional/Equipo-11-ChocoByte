@@ -23,3 +23,9 @@
   border-radius: 0.6rem;
   cursor: pointer;
 }
+
+.smart-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
