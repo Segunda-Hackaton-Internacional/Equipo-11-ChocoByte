@@ -8,12 +8,13 @@
       </p>
     </div>
     <hr />
-    <form class="register-form" (ngSubmit)="onSubmit()">
+    <form class="register-form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
       <app-smart-input
         id="firstName"
         type="text"
         placeholder="John"
         [required]="true"
+        formControlName="firstName"
         >
         Nombres
       </app-smart-input>
@@ -21,6 +22,7 @@
         id="lastName"
         type="text"
         placeholder="Doe"
+        formControlName="lastName"
         >
         Apellidos
       </app-smart-input>
@@ -29,6 +31,7 @@
         type="email"
         placeholder="johndoe@example.com"
         [required]="true"
+        formControlName="email"
         >
         Correo electrónico
       </app-smart-input>
@@ -36,6 +39,7 @@
         id="password"
         type="password"
         [required]="true"
+        formControlName="password"
         >
         Contraseña
       </app-smart-input>
@@ -43,12 +47,14 @@
         id="confirmPassword"
         type="password"
         [required]="true"
+        formControlName="confirmPassword"
         >
         Confirmar contraseña
       </app-smart-input>
       <app-smart-input
         id="register-btn"
         type="submit"
+        [disabled]="!registerForm.valid"
         >
         Registrarse
       </app-smart-input>

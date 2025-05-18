@@ -12,7 +12,7 @@
         [value]="value"
         [placeholder]="placeholder"
         [required]="required"
-        [formControl]="formControl"
+        (input)="onInput($event)"
       />
     </label>
   } @else {
@@ -25,6 +25,7 @@
       [ngClass]="{
         'is-btn': isBtn,
       }"
+      [disabled]="disabled"
     />
   }
   
