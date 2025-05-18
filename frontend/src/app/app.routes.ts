@@ -4,6 +4,8 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { BlockchainPageComponent } from './blockchain-page/blockchain-page.component';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { RegisterPageComponent } from './auth/register-page/register-page.component';
+import { LoginPageComponent } from './auth/login-page/login-page.component';
 
 export const routes: Routes = [
   {
@@ -21,5 +23,13 @@ export const routes: Routes = [
   {
     path: 'blockchain-info/:id',
     component: BlockchainPageComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterPageComponent,
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent,
   },
 ];
