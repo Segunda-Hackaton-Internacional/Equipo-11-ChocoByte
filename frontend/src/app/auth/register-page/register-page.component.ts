@@ -17,9 +17,10 @@ import { UsersAdapter } from '../../../lib/auth/usersAdapter';
 export class RegisterPageComponent {
   private formBuilder = inject(FormBuilder);
   private usersAdapter = UsersAdapter.getInstance();
-  
+
   public registrado = false;
   public error = false;
+  public errorMessage = '';
 
   public registerForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -44,6 +45,8 @@ export class RegisterPageComponent {
       } else {
         this.registrado = false;
         this.error = true;
+        this.errorMessage = result.message;
+        console.error('Error registering user:', result.message);
       }
     });
   }

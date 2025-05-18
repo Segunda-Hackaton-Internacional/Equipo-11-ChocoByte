@@ -35,7 +35,7 @@ export class UsersAdapter {
       console.error('Error registering user:', error);
       return {
         result: false,
-        message: 'Error registering user',
+        message: 'Error registering user: ' + (error as Error).message,
         email,
       }
     }
