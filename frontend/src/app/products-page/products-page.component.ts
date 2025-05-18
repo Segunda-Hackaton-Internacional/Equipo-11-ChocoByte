@@ -6,6 +6,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CartPageComponent } from '../cart-page/cart-page.component';
 import { Router, RouterModule } from '@angular/router';
+import { AppState } from '../../model/appState';
 
 
 interface Product {
@@ -239,8 +240,20 @@ export class ProductsPageComponent implements OnInit {
     };
   
     this.carritoProductos.push(productoParaCarrito);
-    const state = JSON.parse(localStorage.getItem('state') as string);
-    state.productos.push(productoParaCarrito);
+    const state = JSON.parse(localStorage.getItem('state') as string) as AppState;
+    let agregado = false;
+    for (let i = 0; i < state.productos.length; i++) {
+      const p = state.productos[i];
+      
+      if (p.productId === productoParaCarrito.productId) {
+        p.cantidad += productoParaCarrito.cantidad;
+        agregado = true;
+        break;
+      }
+    }
+    if (!agregado) {
+      state.productos.push(productoParaCarrito);
+    }
     localStorage.setItem('state', JSON.stringify(state));
   }    
 }
