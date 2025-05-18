@@ -34,7 +34,12 @@ export class CartPageComponent {
     private blockchainService: BlockchainService,
     private router: Router
   ) {
-    const state = this.router.getCurrentNavigation()?.extras.state as { productos: any[] };
+    if (!localStorage.getItem('state')) {
+      this.router.navigate(['/products']);
+      return;
+    }
+
+    const state = JSON.parse(localStorage.getItem('state') as string) as { productos: any[] };
     if (state?.productos?.length) {
       this.carrito = state.productos;
     }

@@ -47,6 +47,10 @@ export class ProductsPageComponent implements OnInit {
   selectedType = '';
 
   constructor(private fb: FormBuilder, private router: Router) {
+    if (!localStorage.getItem('state')) {
+      localStorage.setItem('state', JSON.stringify({ productos: [] }));
+    }
+
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
@@ -235,10 +239,8 @@ export class ProductsPageComponent implements OnInit {
     };
   
     this.carritoProductos.push(productoParaCarrito);
-    console.log('Producto enviado al componente carrito:', productoParaCarrito);
-  
-    this.router.navigate(['/cart'], {
-      state: { productos: this.carritoProductos }
-    });
+    const state = JSON.parse(localStorage.getItem('state') as string);
+    state.productos.push(productoParaCarrito);
+    localStorage.setItem('state', JSON.stringify(state));
   }    
 }
