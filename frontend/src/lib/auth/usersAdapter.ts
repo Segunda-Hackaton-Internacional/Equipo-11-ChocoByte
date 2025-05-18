@@ -1,5 +1,12 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, User } from "firebase/auth";
 import { firebaseAuth } from "./firebase";
+
+export interface AuthResult {
+  result: boolean;
+  message: string;
+  email: string;
+  user?: User;
+}
 
 class UsersAdapter {
   private static instance: UsersAdapter;
@@ -15,23 +22,41 @@ class UsersAdapter {
     return UsersAdapter.instance;
   }
 
-  public async registerUser(email: string, password: string): Promise<any> {
+  public async registerUser(email: string, password: string): Promise<AuthResult> {
     try {
       const result = await createUserWithEmailAndPassword(firebaseAuth, email, password);
-      return { message: 'User registered successfully', email, user: result.user };
+      return {
+        result: true,
+        message: 'User registered successfully',
+        email,
+        user: result.user,
+      };
     } catch (error) {
       console.error('Error registering user:', error);
-      throw new Error('Error registering user');
+      return {
+        result: false,
+        message: 'Error registering user',
+        email,
+      }
     }
   }
 
-  public async loginUser(email: string, password: string): Promise<any> {
+  public async loginUser(email: string, password: string): Promise<AuthResult> {
     try {
       const result = await signInWithEmailAndPassword(firebaseAuth, email, password);
-      return { message: 'User logged in successfully', email, user: result.user };
+      return {
+        result: true,
+        message: 'User logged in successfully',
+        email,
+        user: result.user,
+      };
     } catch (error) {
       console.error('Error logging in user:', error);
-      throw new Error('Error logging in user');
+      return {
+        result: false,
+        message: 'Error logging in user',
+        email,
+      };
     }
   }
 }
