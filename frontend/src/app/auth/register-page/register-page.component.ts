@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SmartInputComponent } from "../../components/smart-input/smart-input.component";
 import { passwordConfirmationValidator } from '../../../lib/form/validators/passConfirm';
 import { CommonModule } from '@angular/common';
+import { UsersAdapter } from '../../../lib/auth/usersAdapter';
 
 @Component({
   selector: 'app-register-page',
@@ -15,6 +16,10 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterPageComponent {
   private formBuilder = inject(FormBuilder);
+  private usersAdapter = UsersAdapter.getInstance();
+  
+  public registrado = false;
+  public error = false;
 
   public registerForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -29,6 +34,17 @@ export class RegisterPageComponent {
   });
 
   public onSubmit() {
-
+    this.usersAdapter.registerUser(
+      this.registerForm.value.email as string,
+      this.registerForm.value.password as string
+    ).then((result) => {
+      if (result.result) {
+        this.registrado = true;
+        this.error = false;
+      } else {
+        this.registrado = false;
+        this.error = true;
+      }
+    });
   }
 }

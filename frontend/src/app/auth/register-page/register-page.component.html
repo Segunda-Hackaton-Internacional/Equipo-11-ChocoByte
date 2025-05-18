@@ -62,6 +62,16 @@
         >
         Registrarse
       </app-smart-input>
+      <p *ngIf="!registrado" class="register-link">
+        ¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a>
+      </p>
+      <p *ngIf="registrado" style="color: green;">
+        Registrado existosamente. Ahora puedes iniciar sesión con tu cuenta.
+        <a href="/login">Inicia sesión</a>
+      </p>
+      <p *ngIf="error" style="color: red;">
+        Ha ocurrido un error al registrarte.
+      </p>
     </form>
   </div>
 </div>

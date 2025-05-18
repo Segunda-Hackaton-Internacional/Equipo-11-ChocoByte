@@ -8,7 +8,7 @@ export interface AuthResult {
   user?: User;
 }
 
-class UsersAdapter {
+export class UsersAdapter {
   private static instance: UsersAdapter;
 
   private constructor() {
