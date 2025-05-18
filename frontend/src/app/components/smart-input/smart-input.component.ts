@@ -31,7 +31,9 @@ export class SmartInputComponent implements ControlValueAccessor {
 
   ngOnInit() {
     if (this.type === "submit") {
-      this.value = 'Aceptar';
+      if (this.value === "") {
+        this.value = "Aceptar";
+      }
       this.isBtn = true;
     }
   }
