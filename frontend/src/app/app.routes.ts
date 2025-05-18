@@ -7,6 +7,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { RegisterPageComponent } from './auth/register-page/register-page.component';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { Block } from '@angular/compiler';
 
 
 export const routes: Routes = [
@@ -22,12 +23,8 @@ export const routes: Routes = [
     path: 'cart',
     component: CartPageComponent,
   },
-  {
-    path: 'blockchain-info/:id',
-    component: BlockchainPageComponent,
-  },
   { 
-    path: 'products/:id', component: ProductCardComponent 
+    path: 'products/:id', component: BlockchainPageComponent, 
   },
   {
     path: 'register',
