@@ -1,0 +1,48 @@
+<div class="form-container">
+  <h2>Registrar Nuevo Producto</h2>
+  <form (ngSubmit)="submit()" enctype="multipart/form-data">
+    <label>
+      Nombre *
+      <input [(ngModel)]="producto.nombre" name="nombre" required />
+    </label>
+
+    <label>
+      Descripción
+      <textarea [(ngModel)]="producto.descripcion" name="descripcion"></textarea>
+    </label>
+
+    <label>
+      Categoría
+      <input [(ngModel)]="producto.categoria" name="categoria" />
+    </label>
+
+    <label>
+      Precio (COP) *
+      <input type="number" [(ngModel)]="producto.precio" name="precio" required />
+    </label>
+
+    <label>
+      Cantidad *
+      <input type="number" [(ngModel)]="producto.cantidad" name="cantidad" required />
+    </label>
+
+    <label>
+      Origen
+      <input [(ngModel)]="producto.origen" name="origen" />
+    </label>
+
+    <label>
+      Certificaciones (separar con comas)
+      <input [(ngModel)]="producto.certificaciones" name="certificaciones" />
+    </label>
+
+    <label>
+      Imágenes
+      <input type="file" (change)="onFilesChange($event)" multiple />
+    </label>
+
+    <button type="submit">Registrar Producto</button>
+  </form>
+
+  <p class="message">{{ mensaje }}</p>
+</div>

@@ -27,6 +27,9 @@ export const routes: Routes = [
     path: 'products/:id', component: BlockchainPageComponent, 
   },
   {
+    path: 'register-product',component: ProductsPageComponent,
+  },
+  {
     path: 'register',
     component: RegisterPageComponent,
   },
