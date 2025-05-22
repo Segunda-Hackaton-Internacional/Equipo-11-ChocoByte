@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<div class="cart-container">
+  <h2 class="cart-title">🛒 Carrito de Compras</h2>
+
+  <div *ngFor="let item of carrito" class="cart-item">
+    <div class="cart-item-name">{{ item.nombre }}</div>
+    <div class="cart-item-details">Cantidad: {{ item.cantidad }}</div>
+    <div class="cart-item-details">Precio unitario: {{ item.precio | currency:'COP' }}</div>
+  </div>
+
+  <div class="total">Total: {{ total | currency:'COP' }}</div>
+
+  <button class="btn-confirmar" (click)="confirmarCompra()">✅ Confirmar Compra</button>
+
+  <p class="resultado" *ngIf="resultado">{{ resultado }}</p>
+</div>
+
+<app-footer></app-footer>

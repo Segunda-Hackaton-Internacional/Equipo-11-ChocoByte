@@ -1,0 +1,33 @@
+<div class="smart-container">
+  @if (type != "submit") {
+    <label [for]="id" class="smart-label">
+      <strong>
+        <ng-content></ng-content>
+      </strong>
+      <input 
+        [type]="type" 
+        [name]="id" 
+        [id]="id" 
+        class="smart-input" 
+        [value]="value"
+        [placeholder]="placeholder"
+        [required]="required"
+        (input)="onInput($event)"
+        (blur)="onTouched()"
+      />
+    </label>
+  } @else {
+    <input 
+      [type]="type" 
+      [name]="id" 
+      [id]="id" 
+      class="smart-input" 
+      [value]="value" 
+      [ngClass]="{
+        'is-btn': isBtn,
+      }"
+      [disabled]="disabled"
+    />
+  }
+  
+</div>

@@ -1,0 +1,92 @@
+/* Contenedor principal */
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 32px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Título */
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 28px;
+  color: #2d3748;
+}
+
+/* Labels & Inputs */
+.form-container label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 15px;
+  color: #4a5568;
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container textarea,
+.form-container input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-container textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Focus en inputs */
+.form-container input:focus,
+.form-container textarea:focus {
+  outline: none;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
+}
+
+/* Botón */
+.form-container button {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #3182ce;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.form-container button:hover {
+  background-color: #2b6cb0;
+}
+
+.form-container button:active {
+  transform: translateY(1px);
+}
+
+/* Mensaje */
+.form-container .message {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #2d3748;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .form-container {
+    padding: 24px;
+    margin: 30px 16px;
+  }
+}
