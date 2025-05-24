@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../services/products/products.service';
 import { Product } from '../../../model/product'; 
 import { AppState, StateProduct } from '../../../model/appState';
@@ -35,9 +35,14 @@ export class ProductCardComponent implements OnInit {
   isAdded: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private productService: ProductsService
-  ) {}
+  ) {
+    if (!localStorage.getItem('state')) {
+      this.router.navigate(['/products']);
+      return;
+    }
+  }
 
   ngOnInit(): void {
     

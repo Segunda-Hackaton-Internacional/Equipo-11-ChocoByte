@@ -23,7 +23,7 @@ import { Product } from '../../model/product';
   templateUrl: './products-page.component.html',
   styleUrls: ['./products-page.component.css'],
 })
-export class ProductsPageComponent implements OnInit {
+export class ProductsPageComponent {
   products: Product[] = [];
   productForm: FormGroup;
   showAddForm = false;
@@ -35,8 +35,110 @@ export class ProductsPageComponent implements OnInit {
   selectedType = '';
 
   constructor(private fb: FormBuilder, private router: Router) {
+    this.products = [
+      {
+        id: 1,
+        name: 'Cacao Premium',
+        price: 15000,
+        description: 'Cacao orgánico de alta calidad',
+        type: 'Cacao',
+        quantity: 1,
+        imageUrl: 'https://i.pinimg.com/736x/2a/d4/b5/2ad4b548b80f1e91a12b0b9df5d5bb96.jpg',
+        presentation: 'Grano',
+        weight: 500
+      },
+      {
+        id: 2,
+        name: 'Café de Sierra Nevada',
+        price: 18000,
+        description: 'Café cultivado en altura con notas frutales',
+        type: 'Café',
+        quantity: 1,
+        imageUrl: 'https://mtpak.coffee/wp-content/uploads/2023/09/recyclable-stock-coffee-packaging-mtpak-coffee.jpg',
+        presentation: 'Molido',
+        weight: 250
+      },
+      {
+        id: 3,
+        name: 'Cacao Nacional Fino',
+        price: 22000,
+        description: 'Cacao fino de aroma, ideal para repostería',
+        type: 'Cacao',
+        quantity: 1,
+        imageUrl: 'https://d20f60vzbd93dl.cloudfront.net/uploads/tienda_007833/tienda_007833_ac5ec8ea9673bc50ca895d3c29edd1b2d4c88358_producto_large_90.jpg?not-from-cache-please',
+        presentation: 'Grano',
+        weight: 400
+      },
+      {
+        id: 4,
+        name: 'Café Orgánico del Huila',
+        price: 16000,
+        description: 'Café 100% orgánico con certificación internacional',
+        type: 'Café',
+        quantity: 1,
+        imageUrl: 'https://images.vexels.com/content/193473/preview/coffee-bag-packaging-mockup-1e1d79.png',
+        presentation: 'Grano',
+        weight: 500
+      },
+      {
+        id: 5,
+        name: 'Cacao con Especias',
+        price: 20000,
+        description: 'Cacao infusionado con canela y cardamomo',
+        type: 'Cacao',
+        quantity: 1,
+        imageUrl: 'https://procolcacao.com/wp-content/uploads/2021/09/crocacao-3.jpg',
+        presentation: 'Molido',
+        weight: 350
+      },
+      {
+        id: 6,
+        name: 'Café de Origen Tolima',
+        price: 17500,
+        description: 'Café con acidez media y sabor balanceado',
+        type: 'Café',
+        quantity: 1,
+        imageUrl: 'https://gitu.net/imgs/free-psd-mockups-download/600x0_aluminium-flat-bottom-coffee-pouch-psd-mockup.jpg',
+        presentation: 'Molido',
+        weight: 250
+      },
+      {
+        id: 7,
+        name: 'Cacao en Polvo Premium',
+        price: 14000,
+        description: 'Cacao en polvo ideal para bebidas o postres',
+        type: 'Cacao',
+        quantity: 1,
+        imageUrl: 'https://www.swisspac.pe/wp-content/uploads/2022/12/Chocolate_Packaging_1.jpg',
+        presentation: 'Molido',
+        weight: 300
+      },
+      {
+        id: 8,
+        name: 'Café Descafeinado Natural',
+        price: 19000,
+        description: 'Café suave, descafeinado sin químicos',
+        type: 'Café',
+        quantity: 1,
+        imageUrl: 'https://img.freepik.com/psd-premium/maqueta-embalaje-bolsa-cafe-aluminio_439185-1875.jpg',
+        presentation: 'Grano',
+        weight: 500
+      },
+      {
+        id: 9,
+        name: 'Cacao Criollo Amazónico',
+        price: 25000,
+        description: 'Variedad criolla nativa con alta concentración de cacao',
+        type: 'Cacao',
+        quantity: 1,
+        imageUrl: 'https://swisspac.ec/wp-content/uploads/2022/12/Chocolate_Packaging_5-1.jpg',
+        presentation: 'Grano',
+        weight: 450
+      }
+    ];
+
     if (!localStorage.getItem('state')) {
-      localStorage.setItem('state', JSON.stringify({ productos: [] }));
+      localStorage.setItem('state', JSON.stringify({ productos: [], catalogo: this.products } as AppState));
     }
 
     this.productForm = this.fb.group({
@@ -50,109 +152,6 @@ export class ProductsPageComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.products = [
-        {
-          id: 1,
-          name: 'Cacao Premium',
-          price: 15000,
-          description: 'Cacao orgánico de alta calidad',
-          type: 'Cacao',
-          quantity: 1,
-          imageUrl: 'https://i.pinimg.com/736x/2a/d4/b5/2ad4b548b80f1e91a12b0b9df5d5bb96.jpg',
-          presentation: 'Grano',
-          weight: 500
-        },
-        {
-          id: 2,
-          name: 'Café de Sierra Nevada',
-          price: 18000,
-          description: 'Café cultivado en altura con notas frutales',
-          type: 'Café',
-          quantity: 1,
-          imageUrl: 'https://mtpak.coffee/wp-content/uploads/2023/09/recyclable-stock-coffee-packaging-mtpak-coffee.jpg',
-          presentation: 'Molido',
-          weight: 250
-        },
-        {
-          id: 3,
-          name: 'Cacao Nacional Fino',
-          price: 22000,
-          description: 'Cacao fino de aroma, ideal para repostería',
-          type: 'Cacao',
-          quantity: 1,
-          imageUrl: 'https://d20f60vzbd93dl.cloudfront.net/uploads/tienda_007833/tienda_007833_ac5ec8ea9673bc50ca895d3c29edd1b2d4c88358_producto_large_90.jpg?not-from-cache-please',
-          presentation: 'Grano',
-          weight: 400
-        },
-        {
-          id: 4,
-          name: 'Café Orgánico del Huila',
-          price: 16000,
-          description: 'Café 100% orgánico con certificación internacional',
-          type: 'Café',
-          quantity: 1,
-          imageUrl: 'https://images.vexels.com/content/193473/preview/coffee-bag-packaging-mockup-1e1d79.png',
-          presentation: 'Grano',
-          weight: 500
-        },
-        {
-          id: 5,
-          name: 'Cacao con Especias',
-          price: 20000,
-          description: 'Cacao infusionado con canela y cardamomo',
-          type: 'Cacao',
-          quantity: 1,
-          imageUrl: 'https://procolcacao.com/wp-content/uploads/2021/09/crocacao-3.jpg',
-          presentation: 'Molido',
-          weight: 350
-        },
-        {
-          id: 6,
-          name: 'Café de Origen Tolima',
-          price: 17500,
-          description: 'Café con acidez media y sabor balanceado',
-          type: 'Café',
-          quantity: 1,
-          imageUrl: 'https://gitu.net/imgs/free-psd-mockups-download/600x0_aluminium-flat-bottom-coffee-pouch-psd-mockup.jpg',
-          presentation: 'Molido',
-          weight: 250
-        },
-        {
-          id: 7,
-          name: 'Cacao en Polvo Premium',
-          price: 14000,
-          description: 'Cacao en polvo ideal para bebidas o postres',
-          type: 'Cacao',
-          quantity: 1,
-          imageUrl: 'https://www.swisspac.pe/wp-content/uploads/2022/12/Chocolate_Packaging_1.jpg',
-          presentation: 'Molido',
-          weight: 300
-        },
-        {
-          id: 8,
-          name: 'Café Descafeinado Natural',
-          price: 19000,
-          description: 'Café suave, descafeinado sin químicos',
-          type: 'Café',
-          quantity: 1,
-          imageUrl: 'https://img.freepik.com/psd-premium/maqueta-embalaje-bolsa-cafe-aluminio_439185-1875.jpg',
-          presentation: 'Grano',
-          weight: 500
-        },
-        {
-          id: 9,
-          name: 'Cacao Criollo Amazónico',
-          price: 25000,
-          description: 'Variedad criolla nativa con alta concentración de cacao',
-          type: 'Cacao',
-          quantity: 1,
-          imageUrl: 'https://swisspac.ec/wp-content/uploads/2022/12/Chocolate_Packaging_5-1.jpg',
-          presentation: 'Grano',
-          weight: 450
-        }            
-    ];
-  }
 
   toggleAddForm(): void {
     this.showAddForm = true;

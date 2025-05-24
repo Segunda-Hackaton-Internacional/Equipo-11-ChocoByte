@@ -1,3 +1,5 @@
+import { Product } from "./product";
+
 export interface StateProduct {
   productId: string;
   nombre: string;
@@ -7,4 +9,5 @@ export interface StateProduct {
 
 export interface AppState {
   productos: StateProduct[];
+  catalogo: Product[];
 };
