@@ -21,7 +21,13 @@
         <strong>Categoria:</strong>
         {{product?.type}}
       </p>
-      <button class="btn-confirmar" (click)="agregarAlCarrito()">Agregar al Carrito</button>
+      <div class="quantity-container">
+        <input type="number" name="amount" id="amount-input" [(ngModel)]="product.quantity" min="1" max="10" class="input-cantidad">
+        <button class="btn-confirmar" (click)="agregarAlCarrito()">Agregar al Carrito</button>
+      </div>
+      <p class="success-message" *ngIf="isAdded">
+        <i>Producto agregado al carrito</i>
+      </p>
     </div>
   </div>
 </div>
