@@ -182,6 +182,7 @@ export class ProductsPageComponent {
       };
       this.products.push(productData);
       this.productForm.reset();
+      this.updateCatalog();
       this.volverALista();
     }
   }
@@ -195,6 +196,7 @@ export class ProductsPageComponent {
     if (this.selectedProductId !== null) {
       this.products = this.products.filter((p) => p.id !== this.selectedProductId);
       this.selectedProductId = null;
+      this.updateCatalog();
       this.volverALista();
     }
   }
@@ -241,5 +243,11 @@ export class ProductsPageComponent {
       state.productos.push(productoParaCarrito);
     }
     localStorage.setItem('state', JSON.stringify(state));
-  }    
+  }
+
+  updateCatalog(): void {
+    const state = JSON.parse(localStorage.getItem('state') as string) as AppState;
+    state.catalogo = this.products;
+    localStorage.setItem('state', JSON.stringify(state));
+  }
 }
