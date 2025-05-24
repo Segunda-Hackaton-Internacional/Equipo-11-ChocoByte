@@ -54,7 +54,7 @@ export class CartPageComponent {
 
     const order: Order = {
       userId: this.userId,
-      productId: item.productId,
+      product: item.nombre,
       quantity: item.cantidad,
       paymentMethod: this.paymentMethod,
       shippingAddress: this.shippingAddress
@@ -74,14 +74,7 @@ export class CartPageComponent {
           traceId: traceId
         };
 
-        this.blockchainService.mintNFT(item.nombre, metadata).subscribe({
-          next: (nftRes) => {
-            this.resultado = `✅ Compra exitosa. NFT creado: ${nftRes.nft.publicKey}`;
-          },
-          error: (err) => {
-            this.resultado = '⚠️ Compra realizada, pero fallo en NFT: ' + err.message;
-          }
-        });
+        this.resultado = '✅ Compra realizada con éxito. NFT en proceso de minting...';
       },
       error: (err) => {
         this.resultado = '❌ Error al realizar la compra: ' + err.message;

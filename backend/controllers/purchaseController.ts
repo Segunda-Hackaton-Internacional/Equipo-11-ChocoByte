@@ -5,37 +5,18 @@ import { v4 as uuidv4 } from "uuid";
 
 export const makePurchase = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { productId, quantity, paymentMethod, shippingAddress, userId } = req.body;
+    const { product, quantity, paymentMethod, shippingAddress, userId } = req.body;
 
-    if (!userId) {
-      res.status(400).json({ message: "Falta el ID del comprador (buyerId)" });
+    if (!userId || !product) {
+      res.status(400).json({ message: "Falta el ID del comprador (buyerId) y/o el " });
       return;
     }
-
-    const productRef = doc(firebaseStorage, "products", productId);
-    const productSnap = await getDoc(productRef);
-
-    if (!productSnap.exists()) {
-      res.status(404).json({ message: "Producto no encontrado" });
-      return;
-    }
-
-    const product = productSnap.data();
-
-    if (product.stock < quantity) {
-      res.status(400).json({ message: "Stock insuficiente" });
-      return;
-    }
-
-    await updateDoc(productRef, {
-      stock: product.stock - quantity,
-    });
 
     const traceId = uuidv4();
 
     const newOrder = {
       userId,
-      productId,
+      product,
       quantity,
       paymentMethod,
       shippingAddress,
@@ -45,6 +26,7 @@ export const makePurchase = async (req: Request, res: Response): Promise<void> =
       traceId,
     };
 
+    console.log("Orden de compra:", JSON.stringify(newOrder));
     await addDoc(collection(firebaseStorage, "ordenes"), newOrder);
 
     res.status(201).json({
