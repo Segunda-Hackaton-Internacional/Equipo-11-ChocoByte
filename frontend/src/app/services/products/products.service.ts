@@ -37,7 +37,13 @@ export class ProductsService {
     return new Observable<Product>(observer => {
       // Simulate an API call with a delay
       setTimeout(() => {
-        const product: Product = { id, name: `Product ${id}`, description: `Description ${id}`, price: id * 100, imageUrl: `url${id}`, category: `Category ${id}` };
+        const product: Product = {
+          id, name: `Product ${id}`, description: `Description ${id}`, price: id * 100, imageUrl: `url${id}`, category: `Category ${id}`,
+          type: 'Cacao',
+          presentation: 'Grano',
+          quantity: 0,
+          weight: 0
+        };
         observer.next(product);
         observer.complete();
       }, 1000);

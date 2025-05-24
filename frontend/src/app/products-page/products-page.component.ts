@@ -6,20 +6,8 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CartPageComponent } from '../cart-page/cart-page.component';
 import { Router, RouterModule } from '@angular/router';
-import { AppState } from '../../model/appState';
-
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  type: 'Cacao' | 'Café';
-  quantity: number;
-  imageUrl: string;
-  presentation: 'Grano' | 'Molido';
-  weight: number;
-}
+import { AppState, StateProduct } from '../../model/appState';
+import { Product } from '../../model/product';
 
 @Component({
   selector: 'app-products-page',
@@ -30,7 +18,6 @@ interface Product {
     ReactiveFormsModule,
     NavbarComponent,
     FooterComponent,
-    CartPageComponent,
     RouterModule,
   ],
   templateUrl: './products-page.component.html',
@@ -226,17 +213,17 @@ export class ProductsPageComponent implements OnInit {
   filteredProducts(): Product[] {
     return this.products.filter(
       (product) =>
-        (!this.searchTerm || product.name.toLowerCase().includes(this.searchTerm.toLowerCase())) &&
+        (!this.searchTerm || product.name?.toLowerCase().includes(this.searchTerm.toLowerCase())) &&
         (!this.selectedType || product.type === this.selectedType)
     );
   }
 
   addToCart(product: Product): void {
-    const productoParaCarrito = {
-      productId: product.id.toString(),
-      nombre: product.name,
+    const productoParaCarrito: StateProduct = {
+      productId: product.id ? product.id?.toString() : "0",
+      nombre: product.name as string,
       cantidad: product.quantity,
-      precio: product.price
+      precio: product.price as number,
     };
   
     this.carritoProductos.push(productoParaCarrito);
