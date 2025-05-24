@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../services/products/products.service';
 import { Product } from '../../../model/product'; 
@@ -16,7 +16,7 @@ import { Product } from '../../../model/product';
 
 
 export class ProductCardComponent implements OnInit {
-  product: Product = {} as Product;
+  @Input() product: Product | undefined;
   loading: boolean = true;
 
   constructor(
@@ -25,22 +25,10 @@ export class ProductCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (!isNaN(id)) {
-      this.productService.getProductById(id).subscribe({
-        next: (data) => {
-          this.product = data;
-          this.loading = false;
-        },
-        error: (err) => {
-          console.error('Error al obtener producto', err);
-          this.loading = false;
-        }
-      });
-    }
+    
   }
 
   agregarAlCarrito() {
-    console.log("Producto agregado al carrito:", this.product.name);
+    console.log("Producto agregado al carrito:", this.product?.name);
   }
 }

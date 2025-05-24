@@ -1,27 +1,27 @@
 <div class="product-card">
   <h2>
-    {{product.name}}
+    {{product?.name}}
   </h2>
   <div class="product-info">
     <div class="product-col">
-      <img src="{{product.imageUrl}}" alt="Product image" class="product-image">
+      <img src="{{product?.imageUrl}}" alt="Product image" class="product-image">
     </div>
     <div class="product-col">
       <p>
         <strong>
-          {{product.description}}
+          {{product?.description}}
         </strong>
       </p>
       <p>
         <strong class="product-price">
-          {{product.price}} USD
+          {{product?.price}} COP
         </strong>
       </p>
       <p>
-        <strong>Category:</strong>
-        {{product.category}}
+        <strong>Categoria:</strong>
+        {{product?.type}}
       </p>
-      <button class="btn-confirmar" (click)="agregarAlCarrito()">➕ Agregar al Carrito</button>
+      <button class="btn-confirmar" (click)="agregarAlCarrito()">Agregar al Carrito</button>
     </div>
   </div>
 </div>
