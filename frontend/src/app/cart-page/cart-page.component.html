@@ -2,6 +2,8 @@
 <div class="cart-container">
   <h2 class="cart-title">🛒 Carrito de Compras</h2>
 
+  <button class="btn-limpiar" (click)="limpiarCarrito()">Vaciar Carrito</button>
+
   <div *ngFor="let item of carrito" class="cart-item">
     <div class="cart-item-name">{{ item.nombre }}</div>
     <div class="cart-item-details">Cantidad: {{ item.cantidad }}</div>

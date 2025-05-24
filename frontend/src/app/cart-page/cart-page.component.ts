@@ -88,4 +88,10 @@ export class CartPageComponent {
       }
     });
   }
+
+  limpiarCarrito() {
+    localStorage.removeItem('state');
+    this.carrito = [];
+    this.resultado = 'Carrito limpiado. Vaya a la página de productos para seguir comprando.';
+  }
 }
