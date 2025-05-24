@@ -13,12 +13,22 @@
         <li>
           <a [routerLink]="['/cart']" routerLinkActive="active">Ver Carrito</a>
         </li>
-        <li>
-          <a [routerLink]="['/login']" class="important-btn" routerLinkActive="active">Iniciar Sesión</a>
-        </li>
-        <li class="especial-btn">
-          <a [routerLink]="['/register']" routerLinkActive="active">Regístrate</a>
-        </li>
+        @if (!loggedIn) {
+          <li>
+            <a [routerLink]="['/login']" class="important-btn" routerLinkActive="active">Iniciar Sesión</a>
+          </li>
+          <li class="especial-btn">
+            <a [routerLink]="['/register']" routerLinkActive="active">Regístrate</a>
+          </li>
+        }
+        @else {
+          <li>
+            <a href="#" style="pointer-events: none">User: {{user.displayName}}</a>
+          </li>
+          <li class="especial-btn">
+            <a href="#" (click)="logout()">Cerrar Sesión</a>
+          </li>
+        }
       </ul>
     </nav>
   </div>
