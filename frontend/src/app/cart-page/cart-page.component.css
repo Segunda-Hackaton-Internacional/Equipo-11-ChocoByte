@@ -19,6 +19,7 @@
   .cart-item {
     border-bottom: 1px solid #eee;
     padding: 12px 0;
+    margin-top: 50px;
   }
   
   .cart-item:last-child {
@@ -61,6 +62,24 @@
   
   .btn-confirmar:hover {
     background-color: #2f855a;
+  }
+
+  .btn-limpiar {
+    display: block;
+    width: 30%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 14px;
+    background-color: #5c5c5c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    float: right;
+  }
+  .btn-limpiar:hover {
+    background-color: #c53030;
   }
   
   .resultado {

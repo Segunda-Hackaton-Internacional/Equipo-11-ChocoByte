@@ -34,7 +34,12 @@ export class CartPageComponent {
     private blockchainService: BlockchainService,
     private router: Router
   ) {
-    const state = this.router.getCurrentNavigation()?.extras.state as { productos: any[] };
+    if (!localStorage.getItem('state')) {
+      this.router.navigate(['/products']);
+      return;
+    }
+
+    const state = JSON.parse(localStorage.getItem('state') as string) as { productos: any[] };
     if (state?.productos?.length) {
       this.carrito = state.productos;
     }
@@ -49,7 +54,7 @@ export class CartPageComponent {
 
     const order: Order = {
       userId: this.userId,
-      productId: item.productId,
+      product: item.nombre,
       quantity: item.cantidad,
       paymentMethod: this.paymentMethod,
       shippingAddress: this.shippingAddress
@@ -69,18 +74,17 @@ export class CartPageComponent {
           traceId: traceId
         };
 
-        this.blockchainService.mintNFT(item.nombre, metadata).subscribe({
-          next: (nftRes) => {
-            this.resultado = `✅ Compra exitosa. NFT creado: ${nftRes.nft.publicKey}`;
-          },
-          error: (err) => {
-            this.resultado = '⚠️ Compra realizada, pero fallo en NFT: ' + err.message;
-          }
-        });
+        this.resultado = '✅ Compra realizada con éxito. NFT en proceso de minting...';
       },
       error: (err) => {
         this.resultado = '❌ Error al realizar la compra: ' + err.message;
       }
     });
+  }
+
+  limpiarCarrito() {
+    localStorage.removeItem('state');
+    this.carrito = [];
+    this.resultado = 'Carrito limpiado. Vaya a la página de productos para seguir comprando.';
   }
 }

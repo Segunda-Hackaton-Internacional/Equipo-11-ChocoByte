@@ -6,4 +6,8 @@ export interface Product {
   imageUrl?: string;
   category?: string;
   nftId?: string;
+  type: 'Cacao' | 'Café';
+  presentation: 'Grano' | 'Molido';
+  quantity: number;
+  weight: number;
 }

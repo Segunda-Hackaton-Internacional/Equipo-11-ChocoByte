@@ -1,4 +1,6 @@
 import express from 'express';
+import cors from 'cors';
+
 import { blockchainRouter } from './routes/blockchain';
 import { usersRouter } from './routes/users';
 import { shoppingRouter } from './routes/shopping';
@@ -9,6 +11,7 @@ const BASEPATH = process.env.BASEPATH ?? '/api'
 const PORT = process.env.PORT ?? 3000;
 
 app.use(express.json());
+app.use(cors())
 
 // Rutas
 app.use(BASEPATH + '/blockchain', blockchainRouter);
