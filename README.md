@@ -73,9 +73,31 @@ bun install -D ts-node
 ```
 
 3. Configura las variables de entorno necesarias. Puedes crear un archivo `.env` en la raíz del proyecto y agregar las variables necesarias. Un ejemplo de archivo `.env` podría ser:
+
 ```bash
 source .env
 ```
+
+De igual manera, es necesario configurar el entorno para el frontend en Angular con el archivo `environment.ts`:
+
+```typescript
+// Copy this file to environment.ts and fill in the values
+// with your Firebase project configuration.
+
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: "FIRE_APIKEY",
+    authDomain: "FIRE_AUTHDOMAIN",
+    projectId: "FIRE_PROJECTID",
+    storageBucket: "FIRE_STORAGEBUCKET",
+    messagingSenderId: "FIRE_MESSAGINGSENDERID",
+    appId: "FIRE_APPID",
+    databaseURL: "FIRE_DATABASE_URL",
+  },
+};
+```
+Asegúrate de reemplazar los valores con los de tu proyecto de Firebase.
 
 4. Inicia el servidor:
 ```bash
