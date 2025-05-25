@@ -3,11 +3,13 @@
 
   <div class="page-header">
     <h1>Información del Producto</h1>
-    <p>ID: {{product.id}}</p>
+    <p>ID: {{product?.id}}</p>
   </div>
 
   <div class="page-content">
-    <app-product-card [product]="product" class="product-card"></app-product-card>
+    @if (product) {
+      <app-product-card class="product-card" [product]="product"></app-product-card>
+    }
     <div class="blockchain-card">
       <h2>
         Información del Registro NFT

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp, type FirebaseOptions } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database"; // Para Realtime Database
 import { getStorage } from "firebase/storage"; // Para Firebase Storage
 
@@ -20,3 +20,17 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseStorage = getFirestore(firebaseApp);
 export const db = getDatabase(firebaseApp);
 export const firebaseFiles = getStorage(firebaseApp);
+
+// Test Firestore connection
+(async () => {
+  try {
+    // Try to read a known document (change path as needed)
+    const testDoc = doc(firebaseStorage, "test/test");
+    await getDoc(testDoc);
+    console.log("Firestore connection successful!");
+    // If successful, do nothing
+  } catch (err) {
+    console.error("Failed to connect to Firestore:", err);
+    process.exit(1); // Crash the app
+  }
+})();
