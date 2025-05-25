@@ -45,10 +45,10 @@ La aplicación está desarrollada en JavaScript y utiliza tecnologías como Angu
 
 ### Requisitos Previos
 
-- Tener instalado Node.js en tu máquina. Puedes descargarlo desde [aquí](https://nodejs.org/).
+- Tener instalado Node.js en tu máquina y el runtime de BunJS. Puedes descargarlo desde [aquí](https://nodejs.org/).
 - Tener instalado Angular CLI. Puedes instalarlo globalmente con el siguiente comando:
 ```bash
-npm install -g @angular/cli
+bun install -g @angular/cli
 ```
 
 ### Descargar el Proyecto
@@ -68,8 +68,8 @@ cd backend
 
 2. Instala las dependencias:
 ```bash
-npm install
-npm install -D ts-node
+bun install
+bun install -D ts-node
 ```
 
 3. Configura las variables de entorno necesarias. Puedes crear un archivo `.env` en la raíz del proyecto y agregar las variables necesarias. Un ejemplo de archivo `.env` podría ser:
@@ -79,7 +79,7 @@ source .env
 
 4. Inicia el servidor:
 ```bash
-npm run ts-node index.ts
+bun run index.ts
 ```
 
 ### Ejecución del Frontend
@@ -91,12 +91,12 @@ cd frontend
 
 2. Instala las dependencias:
 ```bash
-npm install
+bun install
 ```
 
 3. Inicia la aplicación:
 ```bash
-ng serve
+bunx ng serve
 ```
 
 4. Abre tu navegador y navega a `http://localhost:4200/` para ver la aplicación en funcionamiento.

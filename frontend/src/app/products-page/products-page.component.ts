@@ -5,19 +5,9 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CartPageComponent } from '../cart-page/cart-page.component';
-import { Router } from '@angular/router';
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  type: 'Cacao' | 'Café';
-  quantity: number;
-  imageUrl: string;
-  presentation: 'Grano' | 'Molido';
-  weight: number;
-}
+import { Router, RouterModule } from '@angular/router';
+import { AppState, StateProduct } from '../../model/appState';
+import { Product } from '../../model/product';
 
 @Component({
   selector: 'app-products-page',
@@ -28,12 +18,12 @@ interface Product {
     ReactiveFormsModule,
     NavbarComponent,
     FooterComponent,
-    CartPageComponent
+    RouterModule,
   ],
   templateUrl: './products-page.component.html',
   styleUrls: ['./products-page.component.css'],
 })
-export class ProductsPageComponent implements OnInit {
+export class ProductsPageComponent {
   products: Product[] = [];
   productForm: FormGroup;
   showAddForm = false;
@@ -45,19 +35,8 @@ export class ProductsPageComponent implements OnInit {
   selectedType = '';
 
   constructor(private fb: FormBuilder, private router: Router) {
-    this.productForm = this.fb.group({
-      name: ['', Validators.required],
-      price: [0, [Validators.required, Validators.min(0)]],
-      description: ['', Validators.required],
-      type: ['Cacao', Validators.required],
-      imageUrl: ['', Validators.required],
-      presentation: ['Grano', Validators.required],
-      weight: [250, [Validators.required, Validators.min(0)]],
-    });
-  }
-
-  ngOnInit(): void {
-    this.products = [
+    if (!localStorage.getItem('state')) {
+      this.products = [
         {
           id: 1,
           name: 'Cacao Premium',
@@ -156,9 +135,26 @@ export class ProductsPageComponent implements OnInit {
           imageUrl: 'https://swisspac.ec/wp-content/uploads/2022/12/Chocolate_Packaging_5-1.jpg',
           presentation: 'Grano',
           weight: 450
-        }            
-    ];
+        }
+      ];
+
+      localStorage.setItem('state', JSON.stringify({ productos: [], catalogo: this.products } as AppState));
+    } else {
+      const state = JSON.parse(localStorage.getItem('state') as string) as AppState;
+      this.products = state.catalogo;
+    }
+
+    this.productForm = this.fb.group({
+      name: ['', Validators.required],
+      price: [0, [Validators.required, Validators.min(0)]],
+      description: ['', Validators.required],
+      type: ['Cacao', Validators.required],
+      imageUrl: ['', Validators.required],
+      presentation: ['Grano', Validators.required],
+      weight: [250, [Validators.required, Validators.min(0)]],
+    });
   }
+
 
   toggleAddForm(): void {
     this.showAddForm = true;
@@ -189,6 +185,7 @@ export class ProductsPageComponent implements OnInit {
       };
       this.products.push(productData);
       this.productForm.reset();
+      this.updateCatalog();
       this.volverALista();
     }
   }
@@ -202,6 +199,7 @@ export class ProductsPageComponent implements OnInit {
     if (this.selectedProductId !== null) {
       this.products = this.products.filter((p) => p.id !== this.selectedProductId);
       this.selectedProductId = null;
+      this.updateCatalog();
       this.volverALista();
     }
   }
@@ -219,24 +217,40 @@ export class ProductsPageComponent implements OnInit {
   filteredProducts(): Product[] {
     return this.products.filter(
       (product) =>
-        (!this.searchTerm || product.name.toLowerCase().includes(this.searchTerm.toLowerCase())) &&
+        (!this.searchTerm || product.name?.toLowerCase().includes(this.searchTerm.toLowerCase())) &&
         (!this.selectedType || product.type === this.selectedType)
     );
   }
 
   addToCart(product: Product): void {
-    const productoParaCarrito = {
-      productId: product.id.toString(),
-      nombre: product.name,
+    const productoParaCarrito: StateProduct = {
+      productId: product.id ? product.id?.toString() : "0",
+      nombre: product.name as string,
       cantidad: product.quantity,
-      precio: product.price
+      precio: product.price as number,
     };
   
     this.carritoProductos.push(productoParaCarrito);
-    console.log('Producto enviado al componente carrito:', productoParaCarrito);
-  
-    this.router.navigate(['/cart'], {
-      state: { productos: this.carritoProductos }
-    });
-  }    
+    const state = JSON.parse(localStorage.getItem('state') as string) as AppState;
+    let agregado = false;
+    for (let i = 0; i < state.productos.length; i++) {
+      const p = state.productos[i];
+      
+      if (p.productId === productoParaCarrito.productId) {
+        p.cantidad += productoParaCarrito.cantidad;
+        agregado = true;
+        break;
+      }
+    }
+    if (!agregado) {
+      state.productos.push(productoParaCarrito);
+    }
+    localStorage.setItem('state', JSON.stringify(state));
+  }
+
+  updateCatalog(): void {
+    const state = JSON.parse(localStorage.getItem('state') as string) as AppState;
+    state.catalogo = this.products;
+    localStorage.setItem('state', JSON.stringify(state));
+  }
 }

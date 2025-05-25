@@ -1,0 +1,81 @@
+<app-navbar />
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Registro</h2>
+      <p>
+        Ingresa todos los campos que se muestran a continuación para crear una cuenta.
+      </p>
+    </div>
+    <hr />
+    <form class="register-form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+      <app-smart-input
+        id="firstName"
+        type="text"
+        placeholder="John"
+        [required]="true"
+        formControlName="firstName"
+        >
+        Nombres
+      </app-smart-input>
+      <app-smart-input
+        id="lastName"
+        type="text"
+        placeholder="Doe"
+        formControlName="lastName"
+        >
+        Apellidos
+      </app-smart-input>
+      <app-smart-input
+        id="email"
+        type="email"
+        placeholder="johndoe@example.com"
+        [required]="true"
+        formControlName="email"
+        >
+        Correo electrónico
+      </app-smart-input>
+      <app-smart-input
+        id="password"
+        type="password"
+        [required]="true"
+        formControlName="password"
+        >
+        Contraseña
+      </app-smart-input>
+      <app-smart-input
+        id="confirmPassword"
+        type="password"
+        [required]="true"
+        formControlName="confirmPassword"
+        >
+        Confirmar contraseña
+      </app-smart-input>
+      <p *ngIf="registerForm.errors?.['fieldsMismatch'] && registerForm.touched" style="color: red;">
+        Las contraseñas no coinciden.
+      </p>
+      <app-smart-input
+        id="register-btn"
+        type="submit"
+        [disabled]="!registerForm.valid"
+        value="Registrarse"
+        >
+        Registrarse
+      </app-smart-input>
+      <p *ngIf="!registrado" class="register-link">
+        ¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a>
+      </p>
+      <p *ngIf="registrado" style="color: green;">
+        Registrado existosamente. Ahora puedes iniciar sesión con tu cuenta.
+        <a href="/login">Inicia sesión</a>
+      </p>
+      <p *ngIf="error" style="color: red;">
+        Ha ocurrido un error al registrarte.
+        <i>
+          {{ errorMessage }}
+        </i>
+      </p>
+    </form>
+  </div>
+</div>
+<app-footer />
